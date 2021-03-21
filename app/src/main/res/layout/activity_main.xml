@@ -11,11 +11,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
         android:text="Switch Parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.684"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.542" />
 
     <ListView
         android:id="@+id/listview"
@@ -40,9 +42,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="10dp"
+        android:background="#EEC9F8"
         android:hint="Message"
         android:textAlignment="center"
-        android:textColor="?android:attr/textColorLink"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,11 +98,23 @@
         android:layout_alignBaseline="@+id/listDevices"
         android:layout_alignBottom="@+id/listDevices"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
         android:text="Status"
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="108dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/buds"
+        app:layout_constraintEnd_toStartOf="@+id/switch_parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
