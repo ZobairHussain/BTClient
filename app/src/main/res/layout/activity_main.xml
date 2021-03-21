@@ -28,7 +28,6 @@
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listDevices" />
@@ -93,8 +92,8 @@
 
     <TextView
         android:id="@+id/status"
-        android:layout_width="378dp"
-        android:layout_height="41dp"
+        android:layout_width="354dp"
+        android:layout_height="43dp"
         android:layout_alignBaseline="@+id/listDevices"
         android:layout_alignBottom="@+id/listDevices"
         android:layout_alignParentEnd="true"

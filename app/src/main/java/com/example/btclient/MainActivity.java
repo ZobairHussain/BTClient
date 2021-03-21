@@ -6,7 +6,10 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -21,6 +24,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     BluetoothAdapter bluetoothAdapter;
     BluetoothDevice[] btArray;
     int bluetoothDevicePosition;
+
+    ArrayList<String> stringArrayList = new ArrayList<String>();
+    ArrayAdapter<String> arrayAdapter;
 
     ClientClass clientClass;
 
@@ -64,14 +71,33 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableIntent,REQUEST_ENABLE_BLUETOOTH);
         }
 
+        /*Code for available devices*/
+        IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        registerReceiver(myBluetoothReceiver, intentFilter);
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList);
+        listView.setAdapter(arrayAdapter);
+
         implementListeners();
     }
+
+    BroadcastReceiver myBluetoothReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(BluetoothDevice.ACTION_FOUND.equals(action)){
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                stringArrayList.add(device.getName());
+                arrayAdapter.notifyDataSetChanged();
+            }
+        }
+    };
 
     private void implementListeners() {
 
         listDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bluetoothAdapter.startDiscovery();
                 Set<BluetoothDevice> bt=bluetoothAdapter.getBondedDevices();
                 String[] strings=new String[bt.size()];
                 btArray=new BluetoothDevice[bt.size()];
@@ -85,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                         strings[index]=device.getName();
                         index++;
                     }
-                    ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
+                    arrayAdapter=new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,strings);
                     listView.setAdapter(arrayAdapter);
                 }
             }
