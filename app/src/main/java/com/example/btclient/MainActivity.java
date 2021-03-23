@@ -24,6 +24,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     BluetoothAdapter bluetoothAdapter;
     BluetoothDevice[] btArray;
+    BluetoothDevice bluetoothDevice;
     int bluetoothDevicePosition;
 
     ArrayList<String> stringArrayList = new ArrayList<String>();
@@ -139,11 +141,26 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                bluetoothDevice = btArray[position];
+                try {
+                    createBond(bluetoothDevice);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
 
                 clientClass = new ClientClass(btArray[position]);
                 clientClass.start();
                 bluetoothDevicePosition = position;
                 status.setText("Connecting to " + btArray[bluetoothDevicePosition].getName());
+            }
+
+            private Boolean createBond(BluetoothDevice bluetoothDevice)
+            throws Exception
+            {
+                Class class1 = Class.forName("android.bluetooth.BluetoothDevice");
+                Method createBondMethod = class1.getMethod("createBond");
+                return (Boolean) createBondMethod.invoke(bluetoothDevice);
             }
         });
 
