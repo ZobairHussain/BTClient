@@ -21,26 +21,19 @@
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="377dp"
-        android:layout_height="210dp"
+        android:layout_width="383dp"
+        android:layout_height="147dp"
         android:layout_below="@+id/switch_parent"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/listDevices"
         app:layout_constraintTop_toBottomOf="@+id/listDevices" />
 
     <TextView
         android:id="@+id/msg"
-        android:layout_width="409dp"
-        android:layout_height="58dp"
+        android:layout_width="390dp"
+        android:layout_height="61dp"
         android:layout_below="@+id/listview"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="10dp"
         android:background="#EEC9F8"
         android:hint="Message"
         android:textAlignment="center"
@@ -48,7 +41,7 @@
         android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/listDevices"
         app:layout_constraintTop_toBottomOf="@+id/writemsg" />
 
     <EditText
@@ -57,11 +50,11 @@
         android:layout_height="53dp"
         android:layout_alignStart="@+id/switch_parent"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/send"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/msg"
         app:layout_constraintTop_toBottomOf="@+id/status" />
 
     <Button
@@ -70,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/writemsg"
         android:layout_alignEnd="@+id/status"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:text="Send"
@@ -85,8 +78,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="28dp"
-        android:text="List Devices"
+        android:text="Paired Devices"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/msg" />
 
@@ -102,14 +94,15 @@
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/writemsg"
         app:layout_constraintTop_toBottomOf="@+id/switch_parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="108dp"
         android:layout_height="107dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/buds"
         app:layout_constraintEnd_toStartOf="@+id/switch_parent"
         app:layout_constraintHorizontal_bias="0.75"
